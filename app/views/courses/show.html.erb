@@ -1,44 +1,21 @@
-<p id="notice"><%= notice %></p>
+<div class="m-2">
+    <div class="w-full md:w-2/3">
+      <h2 class="font-semibold text-xl m-2"> <%= @course.title %> </h2>
+      <p class="bg-red-500">
+      <%= link_to 'Exercices', new_course_exercice_path(@course) %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @course.title %>
-</p>
+      
+      </p>
+    </div>
+    <div class="card rounded-md md:w-2/3">
+      <div class="m-2 ">
+        <%= @course.content %>
+      </div>
+    </div>
 
-<p>
-  <strong>Content:</strong>
-  <%= @course.content %>
-</p>
-
-<p>
-  <strong>Coverimg:</strong>
-  <%= @course.coverImg %>
-</p>
-
-<p>
-  <strong>Contentimg:</strong>
-  <%= @course.contentImg %>
-</p>
-
-<p>
-  <strong>Slug:</strong>
-  <%= @course.slug %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @course.user_id %>
-</p>
-
-<p>
-  <strong>Level:</strong>
-  <%= @course.level_id %>
-</p>
-
-<p>
-  <strong>Material:</strong>
-  <%= @course.material_id %>
-</p>
-
-<%= link_to 'Edit', edit_course_path(@course) %> |
-<%= link_to 'Back', courses_path %>
+    <!-- Add exercices list for medium--->
+    <div class="card mt-2 md:w-2/3">
+      <div class="m-2">
+        <%= render partial: "courses/show_exercices",locals: {course: @course} %>
+    </div>
+  </div>

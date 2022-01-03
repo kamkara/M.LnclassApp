@@ -1,16 +1,16 @@
 Rails.application.routes.draw do
   
+  root to:'welcome#index'
   resources :courses
-  get 'dashboard/index'
   resources :schools
-  get 'home/index'
-  get 'home/show'
-  get 'home/enseignant'
   resources :materials
   resources :levels
-  root to:'welcome#index'
 
-
+  get "feeds", to:'home#index'
+   get "espace_enseignant", to:'dashboard#index'
+  get "teams", to:'home#show'
+  get "inscription-enseignant", to:'home#enseignant'
+  get "lesson", to:'courses#new'
   ######### USER DATA #########
   devise_scope :user do
     get 'profile/edit'    => 'devise/registrations#edit',   :as => :edit_user_registration

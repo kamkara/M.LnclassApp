@@ -1,57 +1,38 @@
-<%= form_with(model: course) do |form| %>
-  <% if course.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(course.errors.count, "error") %> prohibited this course from being saved:</h2>
 
-      <ul>
-        <% course.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+<%= form_with(model: course) do |f| %>
+  <div class="container md:px-12">
+    <% if course.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(course.errors.count, "error") %> prohibited this course from being saved:</h2>
+        <ul>
+          <% course.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+
+    <div class="">
+      <%= f.label :"Titre ..." %>
+      <%= f.text_field :title, class:" border rounded-md w-full py-2 px-3", placeholder:"le contenu ..." %>
     </div>
-  <% end %>
+    <div class="">
+      <%= f.label :"contenu ..." %>
+      <%= f.rich_text_area :content, class:" border border-2 bg-red-400 bg-white px-12 rounded-md w-full py-2 richtext", placeholder:"Le contenu ici ..." %>
+    </div>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
+      <%= f.hidden_field :material_id, value: current_user.material_id %>
+    <p class=" mt-2">Choisi le Niveau ...</p>
+  <div class="flex w-1/2 mt-2">
+    <div class="flex select w-1/2 ">
+       <%= f.select :level_id, @levels.map{|level| [level.title, level.id]}, class:" border-red-400 rounded py-2 px-3",
+        placeholder:"Série" %>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :content %>
-    <%= form.text_area :content %>
+  <div class="actions mt-4">
+    <%= f.submit "Publiez maintenant", class:"bg-blue-400 p-2 font-bold rounded-md " %>
   </div>
-
-  <div class="field">
-    <%= form.label :coverImg %>
-    <%= form.text_area :coverImg %>
-  </div>
-
-  <div class="field">
-    <%= form.label :contentImg %>
-    <%= form.text_area :contentImg %>
-  </div>
-
-  <div class="field">
-    <%= form.label :slug %>
-    <%= form.text_field :slug %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :level_id %>
-    <%= form.text_field :level_id %>
-  </div>
-
-  <div class="field">
-    <%= form.label :material_id %>
-    <%= form.text_field :material_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
   </div>
 <% end %>
