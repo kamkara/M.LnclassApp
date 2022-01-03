@@ -27,7 +27,7 @@ gem 'jbuilder', '~> 2.7'
 
 gem 'bootstrap', '5.1.3'
 gem 'jquery-rails'
-
+gem 'friendly_id', '~> 5.4', '>= 5.4.2'
 
 
 
