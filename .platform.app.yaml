@@ -18,9 +18,10 @@ dependencies:
 # The left-hand side is the name of the relationship as it will be exposed
 # to the application in the PLATFORM_RELATIONSHIPS variable. The right-hand
 # side is in the form `<service name>:<endpoint name>`.
-
 relationships:
-    postgresdatabase: 'dbpostgres:postgresql'
+    database: 'db:postgresql'
+#relationships:
+#    postgresdatabase: 'dbpostgres:postgresql'
 # The size of the persistent disk of the application (in MB).
 disk: 1024
 
@@ -104,5 +105,6 @@ web:
         # Send requests to the app server through a unix socket, whose location
         # will be defined in an environment variable named SOCKET.
         socket_family: "unix"
+
     commands:
         start: 'bundle exec unicorn -l $SOCKET'
