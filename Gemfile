@@ -27,10 +27,8 @@ gem 'jbuilder', '~> 2.7'
 
 gem 'bootstrap', '5.1.3'
 gem 'jquery-rails'
-
-
-
-
+gem "unicorn", "~> 6.0", :group => :production
+gem 'platform_sh_rails'
 
 
 
