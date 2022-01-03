@@ -30,7 +30,7 @@ gem 'jquery-rails'
 gem "unicorn", "~> 6.0", :group => :production
 gem 'platform_sh_rails'
 gem 'friendly_id', '~> 5.4', '>= 5.4.2'
-
+gem 'devise', '~> 4.8', '>= 4.8.1'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
