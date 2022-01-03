@@ -25,10 +25,9 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
   </head>
 
-  <body>
+  <body class="bg-gray-200">
+   <%= render 'shared/flash_notice' %> 
     <%= yield %>
-    <p class="notice"><%= notice %></p>
-       <p class="alert"><%= alert %></p>
   </body>
 
 
