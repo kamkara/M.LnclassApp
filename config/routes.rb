@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
   
+  get 'home/index'
+  get 'home/show'
+  get 'home/enseignant'
   resources :materials
   resources :levels
   root to:'welcome#index'
