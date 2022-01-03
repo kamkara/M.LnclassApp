@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :schools
   get 'home/index'
   get 'home/show'
   get 'home/enseignant'
