@@ -29,6 +29,8 @@ gem 'bootstrap', '5.1.3'
 gem 'jquery-rails'
 gem "unicorn", "~> 6.0", :group => :production
 gem 'platform_sh_rails'
+gem 'friendly_id', '~> 5.4', '>= 5.4.2'
+
 
 
 
