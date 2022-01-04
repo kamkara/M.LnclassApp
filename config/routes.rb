@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  resources :exercices
   resources :classrooms
   root to:'welcome#index'
   resources :courses
