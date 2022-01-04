@@ -12,9 +12,133 @@
 
 ActiveRecord::Schema.define(version: 2022_01_03_183932) do
 
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
+
+  create_table "action_text_rich_texts", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "body"
+    t.string "record_type", null: false
+    t.uuid "record_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
+  end
+
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.string "service_name", null: false
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "active_storage_variant_records", force: :cascade do |t|
+    t.bigint "blob_id", null: false
+    t.string "variation_digest", null: false
+    t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "answered_questions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "question_id", null: false
+    t.uuid "answer_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["answer_id"], name: "index_answered_questions_on_answer_id"
+    t.index ["question_id"], name: "index_answered_questions_on_question_id"
+  end
+
+  create_table "answers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.text "content"
+    t.boolean "correct_answer"
+    t.uuid "question_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["question_id"], name: "index_answers_on_question_id"
+  end
+
+  create_table "classroom_admins", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "user_id", null: false
+    t.uuid "classroom_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["classroom_id"], name: "index_classroom_admins_on_classroom_id"
+    t.index ["user_id"], name: "index_classroom_admins_on_user_id"
+  end
+
+  create_table "classrooms", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.string "slug"
+    t.uuid "user_id", null: false
+    t.uuid "level_id", null: false
+    t.uuid "material_id", null: false
+    t.uuid "school_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["level_id"], name: "index_classrooms_on_level_id"
+    t.index ["material_id"], name: "index_classrooms_on_material_id"
+    t.index ["school_id"], name: "index_classrooms_on_school_id"
+    t.index ["user_id"], name: "index_classrooms_on_user_id"
+  end
+
+  create_table "classrooms_exercices", id: false, force: :cascade do |t|
+    t.uuid "classroom_id", null: false
+    t.uuid "exercice_id", null: false
+  end
+
+  create_table "classrooms_users", id: false, force: :cascade do |t|
+    t.uuid "classroom_id", null: false
+    t.uuid "user_id", null: false
+  end
+
+  create_table "courses", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.text "coverImg"
+    t.text "contentImg"
+    t.string "slug"
+    t.uuid "user_id", null: false
+    t.uuid "level_id", null: false
+    t.uuid "material_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["level_id"], name: "index_courses_on_level_id"
+    t.index ["material_id"], name: "index_courses_on_material_id"
+    t.index ["user_id"], name: "index_courses_on_user_id"
+  end
+
+  create_table "courses_exercices", id: false, force: :cascade do |t|
+    t.uuid "course_id", null: false
+    t.uuid "exercice_id", null: false
+  end
+
+  create_table "exercices", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name"
+    t.string "slug"
+    t.boolean "published"
+    t.uuid "user_id", null: false
+    t.uuid "course_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["course_id"], name: "index_exercices_on_course_id"
+    t.index ["user_id"], name: "index_exercices_on_user_id"
+  end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
@@ -44,6 +168,27 @@ ActiveRecord::Schema.define(version: 2022_01_03_183932) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_materials_on_user_id"
   end
+
+  create_table "questions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.text "content"
+    t.string "explain_answer"
+    t.uuid "user_id", null: false
+    t.uuid "exercice_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["exercice_id"], name: "index_questions_on_exercice_id"
+    t.index ["user_id"], name: "index_questions_on_user_id"
+  end
+
+  create_table "results", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "user_id", null: false
+    t.uuid "exercice_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["exercice_id"], name: "index_results_on_exercice_id"
+    t.index ["user_id"], name: "index_results_on_user_id"
+  end
+
 
   create_table "schools", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
@@ -86,7 +231,30 @@ ActiveRecord::Schema.define(version: 2022_01_03_183932) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+
   add_foreign_key "levels", "users"
   add_foreign_key "materials", "users"
+  add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "answered_questions", "answers"
+  add_foreign_key "answered_questions", "questions"
+  add_foreign_key "answers", "questions"
+  add_foreign_key "classroom_admins", "classrooms"
+  add_foreign_key "classroom_admins", "users"
+  add_foreign_key "classrooms", "levels"
+  add_foreign_key "classrooms", "materials"
+  add_foreign_key "classrooms", "schools"
+  add_foreign_key "classrooms", "users"
+  add_foreign_key "courses", "levels"
+  add_foreign_key "courses", "materials"
+  add_foreign_key "courses", "users"
+  add_foreign_key "exercices", "courses"
+  add_foreign_key "exercices", "users"
+  add_foreign_key "levels", "users"
+  add_foreign_key "materials", "users"
+  add_foreign_key "questions", "exercices"
+  add_foreign_key "questions", "users"
+  add_foreign_key "results", "exercices"
+  add_foreign_key "results", "users"
   add_foreign_key "schools", "users"
 end

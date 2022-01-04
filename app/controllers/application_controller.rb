@@ -31,10 +31,10 @@ class ApplicationController < ActionController::Base
 
     private
       def find_levels
-        #@levels = Level.all
+        @levels = Level.all
       end
       
       def find_schools
-        #@schools = School.all
+        @schools = School.all
       end
 end
