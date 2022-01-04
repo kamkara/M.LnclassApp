@@ -1,13 +1,12 @@
 Rails.application.routes.draw do
-  resources :results
-  resources :questions
+  
   root to:'welcome#index'
   get "feeds", to:'home#index'
    get "espace_enseignant", to:'dashboard#index'
   get "teams", to:'home#show'
   get "inscription-enseignant", to:'home#enseignant'
   get "lesson", to:'courses#new'
-
+  get "resultats", to:'results#new'
 
   resources :courses do
     resources :exercices, only: [:new, :create, :show, :index]
