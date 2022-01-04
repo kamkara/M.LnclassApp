@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_04_111456) do
+ActiveRecord::Schema.define(version: 2022_01_04_113640) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -54,6 +54,15 @@ ActiveRecord::Schema.define(version: 2022_01_04_111456) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "answered_questions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "question_id", null: false
+    t.uuid "answer_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["answer_id"], name: "index_answered_questions_on_answer_id"
+    t.index ["question_id"], name: "index_answered_questions_on_question_id"
+  end
+
   create_table "answers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.text "content"
     t.boolean "correct_answer"
@@ -61,6 +70,15 @@ ActiveRecord::Schema.define(version: 2022_01_04_111456) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["question_id"], name: "index_answers_on_question_id"
+  end
+
+  create_table "classroom_admins", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "user_id", null: false
+    t.uuid "classroom_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["classroom_id"], name: "index_classroom_admins_on_classroom_id"
+    t.index ["user_id"], name: "index_classroom_admins_on_user_id"
   end
 
   create_table "classrooms", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -78,6 +96,16 @@ ActiveRecord::Schema.define(version: 2022_01_04_111456) do
     t.index ["user_id"], name: "index_classrooms_on_user_id"
   end
 
+  create_table "classrooms_exercices", id: false, force: :cascade do |t|
+    t.uuid "classroom_id", null: false
+    t.uuid "exercice_id", null: false
+  end
+
+  create_table "classrooms_users", id: false, force: :cascade do |t|
+    t.uuid "classroom_id", null: false
+    t.uuid "user_id", null: false
+  end
+
   create_table "courses", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "title"
     t.text "content"
@@ -92,6 +120,11 @@ ActiveRecord::Schema.define(version: 2022_01_04_111456) do
     t.index ["level_id"], name: "index_courses_on_level_id"
     t.index ["material_id"], name: "index_courses_on_material_id"
     t.index ["user_id"], name: "index_courses_on_user_id"
+  end
+
+  create_table "courses_exercices", id: false, force: :cascade do |t|
+    t.uuid "course_id", null: false
+    t.uuid "exercice_id", null: false
   end
 
   create_table "exercices", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -146,6 +179,15 @@ ActiveRecord::Schema.define(version: 2022_01_04_111456) do
     t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
+  create_table "results", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "user_id", null: false
+    t.uuid "exercice_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["exercice_id"], name: "index_results_on_exercice_id"
+    t.index ["user_id"], name: "index_results_on_user_id"
+  end
+
   create_table "schools", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
     t.string "slug"
@@ -189,7 +231,11 @@ ActiveRecord::Schema.define(version: 2022_01_04_111456) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "answered_questions", "answers"
+  add_foreign_key "answered_questions", "questions"
   add_foreign_key "answers", "questions"
+  add_foreign_key "classroom_admins", "classrooms"
+  add_foreign_key "classroom_admins", "users"
   add_foreign_key "classrooms", "levels"
   add_foreign_key "classrooms", "materials"
   add_foreign_key "classrooms", "schools"
@@ -203,5 +249,7 @@ ActiveRecord::Schema.define(version: 2022_01_04_111456) do
   add_foreign_key "materials", "users"
   add_foreign_key "questions", "exercices"
   add_foreign_key "questions", "users"
+  add_foreign_key "results", "exercices"
+  add_foreign_key "results", "users"
   add_foreign_key "schools", "users"
 end

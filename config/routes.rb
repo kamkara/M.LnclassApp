@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :results
   resources :questions
   root to:'welcome#index'
   get "feeds", to:'home#index'
