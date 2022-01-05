@@ -20,3 +20,9 @@ ActiveStorage.start()
 
 require("trix")
 require("@rails/actiontext")
+
+
+// google analytics setting
+$(document).on("turbolinks:load", function() {
+  gtag('config', '216343412', {'page_location': event.data.url});
+})
