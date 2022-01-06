@@ -69,14 +69,14 @@ end
   end
 
   #role
-  def user_role?(current_user)
+  def currentUserRole?(current_user)
     case current_user.role
     when "Student"
       ":student?"
     when "Teacher"
-      ":Teacher?"
+      ":teacher?"
     when "Team"
-      "Team?"
+      "team?"
     else
       ""
     end
