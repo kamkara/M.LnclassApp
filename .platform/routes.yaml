@@ -6,3 +6,7 @@
 "https://{default}":
   type: upstream
   upstream: "lnclassapp:http"
+
+"https://{default}/":
+    type: redirect
+    to: "https://www.{default}/"
