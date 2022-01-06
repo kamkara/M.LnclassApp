@@ -3,10 +3,6 @@
 # Each route describes how an incoming URL is going
 # to be processed by Platform.sh.
 
-"https://{all}":
+"https://{default}":
   type: upstream
   upstream: "lnclassapp:http"
-
-"https://{all}/":
-    type: redirect
-    to: "https://www.{all}/"
