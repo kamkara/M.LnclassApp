@@ -1,12 +1,8 @@
 Rails.application.routes.draw do
   
+  get 'documents', to:'document#index'
   get 'dashboard/index'
-  resources :schools
-  get 'home/index'
-  get 'home/show'
-  get 'home/enseignant'
-  resources :materials
-  resources :levels
+  
   root to:'welcome#index'
   get "feeds", to:'home#index'
    get "espace_enseignant", to:'dashboard#index'
