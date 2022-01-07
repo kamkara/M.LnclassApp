@@ -1,9 +1,8 @@
 Rails.application.routes.draw do
   
+  root to:'welcome#index'
   get 'documents', to:'document#index'
   get 'dashboard/index'
-  
-  root to:'welcome#index'
   get "feeds", to:'home#index'
    get "espace_enseignant", to:'dashboard#index'
   get "teams", to:'home#show'
@@ -24,7 +23,11 @@ Rails.application.routes.draw do
     resources :results, only: [:new, :create]
   end
 
-  resources :exercices, :classrooms, :schools, :materials, :levels
+  resources :exercices, 
+            :classrooms, 
+            :schools,
+            :materials,
+            :levels
 
   ######### USER DATA #########
   devise_scope :user do
