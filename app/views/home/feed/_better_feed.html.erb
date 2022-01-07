@@ -5,10 +5,11 @@
             <span class="ml-2 text-xl font-semibold">Documents</span>
         </p>  
     </div>
-    <p class="mx-4">Math </p>
-    <p class="mx-4">Math </p>
-    <p class="mx-4">Math </p>
-    <p class="mx-4">Math </p>
+    <% @materials.each do |m| %>
+    <p class="mx-4">
+      <%= link_to m.title, m , class:"bg-white p-1 rounded-l rounded-r lg:rounded-none lg:block" %>
+    </p>
+    <% end %>
  </div>
 
  <!-- General-->
@@ -20,8 +21,7 @@
             <span class="ml-2 text-xl font-semibold">Mon Profil</span>
         </p>  
     </div>
-    <p class="mx-4">
-        La théorie du chaos ne provient pas d'un manque de puissance de traitement, mais du fait que l
-         pour y programmer
-    </p>
+    <p class="mx-4">Nom: <%= current_user.full_name %></p>
+    <p class="mx-4">Niveau: Tle</p>
+    <p class="mx-4">Ville Actuelle: <%= current_user.city %></p>
  </div>
