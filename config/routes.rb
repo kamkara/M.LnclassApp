@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   
   root to:'welcome#index'
+  get "groups", to:'group#index'
   get 'documents', to:'document#index'
   get 'dashboard/index'
   get "feeds", to:'home#index'
