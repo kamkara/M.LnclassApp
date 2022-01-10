@@ -12,14 +12,10 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-//Bootstrap 5 requirement
-//= require jquery3
-//= require popper
-//= require bootstrap
-
 
 require("trix")
 require("@rails/actiontext")
+
 
 
 // google analytics setting

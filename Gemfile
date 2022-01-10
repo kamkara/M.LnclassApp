@@ -10,7 +10,7 @@ gem 'pg', '~> 1.1'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
-gem 'sass-rails', '>= 6'
+#gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '~> 5.0'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
@@ -25,13 +25,12 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Storage variant
  gem 'image_processing', '~> 1.2'
 
-gem 'bootstrap', '5.1.3'
-gem 'jquery-rails'
+
 gem "unicorn", "~> 6.0", :group => :production
 gem 'platform_sh_rails'
 gem 'friendly_id', '~> 5.4', '>= 5.4.2'
 gem 'devise', '~> 4.8', '>= 4.8.1'
-gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.8'
+#gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.8'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
@@ -62,3 +61,5 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem "tailwindcss-rails", "~> 2.0"
