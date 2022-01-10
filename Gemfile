@@ -32,7 +32,6 @@ gem 'platform_sh_rails'
 gem 'friendly_id', '~> 5.4', '>= 5.4.2'
 gem 'devise', '~> 4.8', '>= 4.8.1'
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.8'
-gem 'tailwindcss-rails'
 
 
 # Reduces boot times through caching; required in config/boot.rb
