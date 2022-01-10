@@ -19,21 +19,18 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 
     <!-- Add Tailwind css CDN-->
-    <script src="https://cdn.tailwindcss.com"></script>
-
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+   
     <!-- Favicon-->
     <%= favicon_link_tag asset_path('flavico.png') %>
 
-
+    <!-- Font Awesome CSS -->
     <link rel="stylesheet" href="https://cdn.materialdesignicons.com/6.5.95/css/materialdesignicons.min.css">
-    <!-- Font Awesome CSS 
-    -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
   </head>
 
   <body class="bg-gray-200">
-  
-    <%= yield %>
+      <%= yield %>
 
     <!-- AlpineJs
   <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js" defer></script>
