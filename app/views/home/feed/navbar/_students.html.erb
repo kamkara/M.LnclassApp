@@ -38,10 +38,25 @@
 
     <!-- menu items -->
     <ul class="screen2_menu_items font-semibold ">
-    <div class="bg-blue-500">
-            <li>Home</li>
-            <li>About</li>
-            <li>Contact</li>
+    <div class="bg-blue-500">                             
+                    <!--- Groupe -->
+                    <li class="">
+                    <%= link_to groups_path, class:' no-underline px-6 py-1 flex flex-col md:flex-row md:items-center text-black font-bold' do %>
+                     <span class=""><i class="fa fa-users"></i> Groupes </span>  
+                    <% end %>
+                    </li>
+                    <!--- Documents-->
+                    <li class="">
+                    <%= link_to documents_path, class:'no-underline px-6 py-1 flex flex-col md:flex-row md:items-center text-black font-bold' do %>
+                     <span class=""><i class="fas fa-book "></i> Documents</span> 
+                    <% end %>
+                    </li>
+                    <!--- sign out-->
+                    <li class="">
+                    <%= link_to destroy_user_session_path, method: :delete , class:" no-underline px-6 py-1 flex flex-col md:flex-row md:items-center text-black font-bold" do %>
+                     <span><i class="fas fa-sign-out-alt"></i> Déconnecter</span>
+                    <% end %>
+                    </li>
     </div>
     </ul>
     </label>
