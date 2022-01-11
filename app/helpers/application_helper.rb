@@ -76,7 +76,7 @@ end
     when "Teacher"
       ":teacher?"
     when "Team"
-      "team?"
+      ":team?"
     else
       ""
     end

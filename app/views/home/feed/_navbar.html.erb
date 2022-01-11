@@ -2,6 +2,6 @@
   <%= render "home/feed/navbar/students" %>
 <% elsif currentUserRole?(current_user) == ":teacher?" %>
   <%= render "home/feed/navbar/teachers" %>
-<% elsif currentUserRole?(current_user) == ":team? " %>
+<% elsif currentUserRole?(current_user) == ":team?" %>
   <%= render "home/feed/navbar/teams" %>
 <% end %>
