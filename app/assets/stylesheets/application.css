@@ -1,3 +1,5 @@
-// Custom bootstrap variables must be set or imported *before* bootstrap.
+
+@import url("components/main.css");
+@import url("components/mobile_navbar.css");
 @import url("components/actiontrix.css");
 @import url("components/actiontext.css");
