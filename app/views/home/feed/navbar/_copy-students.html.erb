@@ -1,8 +1,7 @@
-<div class="screen2_container">
-
-    <!-- The nav bar with logo and menu items-->
-    <nav class="screen2_menu_container text-white bg-blue-500">
-        <div class="flex flex-row items-center">
+<!-- component -->
+<!-- The nav bar with logo and menu items-->
+<nav class="screen2_menu_container fixed-top px-6 relative text-white bg-blue-500">
+    <div class="flex flex-row items-center">
         <h3 class="font-bold text-3xl md:mx-40">
             <%= link_to "Lnclass", root_path, class:"no-underline text-white"%>        
         </h3>
@@ -31,17 +30,36 @@
             </div>
         </div>
     </div>
-        <label for="screen2_menu_check" class="screen2_menu_btn">
-            <!-- checkbox to track when the hamburger menu is clicked on -->
-            <input type="checkbox" id="screen2_menu_check" />
-            <!-- the hamburger menu -->
-            <div class="screen2_menu_hamburger"></div>
-            <!-- menu items -->
-            <ul class="screen2_menu_items">
-                <li>Home</li>
-                <li>About</li>
-                <li>Contact</li>
+    <label for="screen2_menu_check" class="screen2_menu_btn">
+        <!-- checkbox to track when the hamburger menu is clicked on -->
+        <input type="checkbox" id="screen2_menu_check" />
+        <!-- the hamburger menu -->
+        <div class="screen2_menu_hamburger md:hidden"></div>
+        <!-- menu items -->
+        <div class="bg-blue-500">                             
+            <ul class="screen2_menu_items font-semibold">
+                <!--- Groupe -->
+                <li class="">
+                    <%= link_to groups_path, class:'no-underline px-6 py-1 flex flex-col md:flex-row md:items-center text-black font-bold' do %>
+                        <span class=""><i class="fa fa-users"></i> Groupes </span>  
+                    <% end %>
+                </li>
+                <!--- Documents-->
+                <li class="">
+                    <%= link_to documents_path, class:'no-underline px-6 py-1 flex flex-col md:flex-row md:items-center text-black font-bold' do %>
+                        <span class=""><i class="fas fa-book "></i> Documents</span> 
+                    <% end %>
+                </li>
+                <!--- sign out-->
+                <li class="">
+                    <%= link_to destroy_user_session_path, method: :delete , class:" no-underline px-6 py-1 flex flex-col md:flex-row md:items-center text-black font-bold" do %>
+                        <span><i class="fas fa-sign-out-alt"></i> Déconnecter</span>
+                    <% end %>
+                </li>
             </ul>
-        </label>
-    </nav>
-</div>
+        </div>
+    </label>
+</nav>
+
+
+
