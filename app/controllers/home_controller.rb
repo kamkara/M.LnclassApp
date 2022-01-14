@@ -2,7 +2,7 @@ class HomeController < ApplicationController
   before_action :authenticate_user!, only: %i[index]
   before_action :find_levels
   before_action :find_materials
- 
+  before_action :find_citylist
   
    
   def index  
@@ -32,5 +32,7 @@ class HomeController < ApplicationController
       def find_materials
         @materials = Material.all
       end
-      
+      def find_citylist
+        @city_ereas = CityErea.all
+      end
 end

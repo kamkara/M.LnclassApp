@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   
+  
   root to:'welcome#index'
   get "groups", to:'group#index'
   get 'documents', to:'document#index'
@@ -28,7 +29,8 @@ Rails.application.routes.draw do
             :classrooms, 
             :schools,
             :materials,
-            :levels
+            :levels,
+            :city_ereas
 
   ######### USER DATA #########
   devise_scope :user do

@@ -12,18 +12,20 @@ class User < ApplicationRecord
   has_many :classrooms
   has_many :exercices
   has_many :results
+  has_many :city_ereas
   
   
   attr_writer :logged
 
+  #enum :role, student: "student", teacher: "teacher", team: "team", default: "student"
   
   ################## VALIDATES  ###############
-   before_validation :user_student?
+   before_validation :user_student?,  on: :create
    
-   
+  
    validates :first_name, :last_name, :full_name, :email, :password,
-              :city, :contact, :role, presence: true
-
+              :contact, :role, presence: true
+    
    validates :full_name,presence: true,
               format: { with: /\A[^0-9`!@#\$%\^&*+_=]+\z/ },
               length: { minimum:5, maximum: 30,
@@ -35,16 +37,19 @@ class User < ApplicationRecord
    validates :role, inclusion: { in: %w(Student Teacher Team),
                     message: "%{value} acces non identifier" }
    
-  
-  
    ############# CUSTOMIZE ###############""
    
    def user_student?
     if self.role == "Student"
       self.email = "#{self.matricule}@gmail.com" # if user.role == "Student"
       self.password = "#{self.contact}"
-        
     end    
+  end
+
+  def user_team?
+    if self.role != "Team"
+      validates :city_id, presence: true, on: :create
+    end
   end
 
   def full_name
@@ -65,14 +70,10 @@ class User < ApplicationRecord
 
   ################## BEFORE SAVE  #########
   before_save do
-  self.contact      = contact.strip.squeeze(" ")
-  self.first_name         = first_name.strip.squeeze(" ").downcase.capitalize
-  self.last_name          = last_name.strip.squeeze(" ").downcase.capitalize
-  self.city               = city.strip.squeeze(" ").downcase.capitalize
-end
-
-
-
+    self.contact            = contact.strip.squeeze(" ")
+    self.first_name         = first_name.strip.squeeze(" ").downcase.capitalize
+    self.last_name          = last_name.strip.squeeze(" ").downcase.capitalize
+  end
 
   ################## LOGGED  #########
    

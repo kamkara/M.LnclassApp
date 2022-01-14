@@ -29,10 +29,10 @@
                     </div>
                                               
                     <!-- add levels -->
-                    <p class=" border-b border-gray-500 py-3 px-5 text-sm mr-3">Sélectionne votre école ... </p>
+                    <p class=" border-b border-gray-500 py-3 px-5 text-sm mr-3">Sélectionne votre ville ... </p>
                     <div class="flex mb-4">
                         <div class="flex items-center m-2 ">
-                            <%= f.select :school_id, @schools.map{|school| [school.name, school.id]} %>
+                            <%= f.select :city_id, @city_ereas.map{|city_erea| [city_erea.title, city_erea.id]} %>
                         </div>
                     </div>
                     <!-- add levels -->
