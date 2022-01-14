@@ -34,9 +34,6 @@ class User < ApplicationRecord
               
    validates :role, inclusion: { in: %w(Student Teacher Team),
                     message: "%{value} acces non identifier" }
-   
-  
-  
    ############# CUSTOMIZE ###############""
    
    def user_student?
