@@ -26,10 +26,10 @@
                     </div>
                                               
                     <!-- add levels -->
-                    <p class=" border-b border-gray-500 py-3 px-5 text-sm font-semibold mr-3">Votre école ... </p>
+                    <p class=" border-b border-gray-500 py-3 px-5 text-sm font-semibold mr-3">Votre ville ... </p>
                     <div class="flex mb-4">
                         <div class="flex items-center m-2 ">
-                            <%= f.select :school_id, @schools.map{|school| [school.name, school.id]} %>
+                            <%= f.select :city_id, @city_ereas.map{|city_erea| [city_erea.title, city_erea.id]} %>
                         </div>
                     </div>
                     <!-- add levels -->
@@ -41,7 +41,6 @@
                     </div>
                     <!-- add role and city default -->
                     <%= f.hidden_field :role, value:"Teacher" %>
-                    <%= f.hidden_field :city, value:"Tiassalé" %> 
                     
 
                     <!-- add email -->

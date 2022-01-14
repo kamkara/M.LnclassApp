@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
   
+  
   root to:'welcome#index'
   get "groups", to:'group#index'
   get 'documents', to:'document#index'
   get 'dashboard/index'
   get "feeds", to:'home#index'
    get "espace_enseignant", to:'dashboard#index'
-  get "teams", to:'home#show'
+  get "teams", to:'home#team'
   get "inscription-enseignant", to:'home#enseignant'
   get "lesson", to:'courses#new'
   get "resultats", to:'results#new'
@@ -28,7 +29,8 @@ Rails.application.routes.draw do
             :classrooms, 
             :schools,
             :materials,
-            :levels
+            :levels,
+            :city_ereas
 
   ######### USER DATA #########
   devise_scope :user do

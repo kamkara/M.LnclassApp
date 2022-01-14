@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_03_183932) do
-
+ActiveRecord::Schema.define(version: 2022_01_12_144116) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -71,6 +70,15 @@ ActiveRecord::Schema.define(version: 2022_01_03_183932) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["question_id"], name: "index_answers_on_question_id"
+  end
+
+  create_table "city_ereas", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "title"
+    t.string "slug"
+    t.uuid "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_city_ereas_on_user_id"
   end
 
   create_table "classroom_admins", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -189,7 +197,6 @@ ActiveRecord::Schema.define(version: 2022_01_03_183932) do
     t.index ["user_id"], name: "index_results_on_user_id"
   end
 
-
   create_table "schools", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "name"
     t.string "slug"
@@ -214,7 +221,6 @@ ActiveRecord::Schema.define(version: 2022_01_03_183932) do
     t.string "last_name"
     t.string "full_name"
     t.string "matricule"
-    t.string "city"
     t.string "status"
     t.string "gender"
     t.string "contact", default: "", null: false
@@ -227,18 +233,17 @@ ActiveRecord::Schema.define(version: 2022_01_03_183932) do
     t.uuid "school_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.uuid "city_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-
-  add_foreign_key "levels", "users"
-  add_foreign_key "materials", "users"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "answered_questions", "answers"
   add_foreign_key "answered_questions", "questions"
   add_foreign_key "answers", "questions"
+  add_foreign_key "city_ereas", "users"
   add_foreign_key "classroom_admins", "classrooms"
   add_foreign_key "classroom_admins", "users"
   add_foreign_key "classrooms", "levels"
