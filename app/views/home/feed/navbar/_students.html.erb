@@ -16,7 +16,7 @@
                     <% end %>
                                 
                     <!--- Groupe -->
-                    <%= link_to groups_path, class:' no-underline px-6 py-1 flex flex-col md:flex-row md:items-center text-black font-bold' do %>
+                    <%= link_to groups_path, class:'hidden no-underline px-6 py-1 flex flex-col md:flex-row md:items-center text-black font-bold' do %>
                      <span class=""><i class="fa fa-users"></i> Groupes </span>  
                     <% end %>
                     <!--- Documents-->
@@ -40,7 +40,7 @@
                                     
             <ul class="screen2_menu_items font-semibold">
                 <!--- Groupe -->
-                <li class="">
+                <li class="hidden">
                     <%= link_to groups_path, class:'no-underline px-6 py-1 flex flex-col md:flex-row md:items-center text-white font-bold' do %>
                         <span class=""><i class="fa fa-users"></i> Groupes </span>  
                     <% end %>
@@ -48,7 +48,7 @@
                 <!--- Documents-->
                 <li class="">
                     <%= link_to documents_path, class:'no-underline px-6 py-1 flex flex-col md:flex-row md:items-center text-white font-bold' do %>
-                        <span class=""><i class="fas fa-book "></i> Documents</span> 
+                        <span class=""><i class="fas fa-book "></i> S'Abonner</span> 
                     <% end %>
                 </li>
                 <!--- sign out-->
