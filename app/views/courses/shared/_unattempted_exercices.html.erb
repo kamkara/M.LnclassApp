@@ -1,3 +1,66 @@
+
+<% if currentUserRole?(current_user) === ":student?" %>
+    <div class="card border m-2">
+        <%= link_to(pricing_path, class: " text-black") do %>
+            <div class="m-2 font-semibold">
+                <p>Exrcice N° 1</p>
+            </div>
+            <div class="m-2 text-sm">
+                <p> 2 Questions</p>
+            </div>
+        <% end %>
+    </div>
+    <div class="card border m-2">
+        <%= link_to(pricing_path, class: " text-black") do %>
+            <div class="m-2 font-semibold">
+                <p>Exrcice N° 2</p>
+            </div>
+            <div class="m-2 text-sm">
+                <p> 4 Questions</p>
+            </div>
+        <% end %>
+    </div>
+    <div class="card border m-2">
+        <%= link_to(pricing_path, class: " text-black") do %>
+            <div class="m-2 font-semibold">
+                <p>Exrcice N° 3</p>
+            </div>
+            <div class="m-2 text-sm">
+                <p> 3 Questions</p>
+            </div>
+        <% end %>
+    </div>
+    <div class="card border m-2">
+        <%= link_to(pricing_path, class: " text-black") do %>
+            <div class="m-2 font-semibold">
+                <p>Exrcice N° 4</p>
+            </div>
+            <div class="m-2 text-sm">
+                <p> 4 Questions</p>
+            </div>
+        <% end %>
+    </div>
+    <div class="card border m-2">
+        <%= link_to(pricing_path, class: " text-black") do %>
+            <div class="m-2 font-semibold">
+                <p>Exrcice N° 5</p>
+            </div>
+            <div class="m-2 text-sm">
+                <p> 4 Questions</p>
+            </div>
+        <% end %>
+    </div>
+    <div class="card border m-2">
+        <%= link_to(pricing_path, class: " text-black") do %>
+            <div class="m-2 font-semibold">
+                <p>Exrcice N° 6</p>
+            </div>
+            <div class="m-2 text-sm">
+                <p> 2 Questions</p>
+            </div>
+        <% end %>
+    </div>
+<% else %>
 <div class="card border m-2">
     <%= link_to(new_exercice_result_path(q), class: " text-black") do %>
         <div class="m-2 font-semibold">
@@ -8,3 +71,4 @@
         </div>
     <% end %>
 </div>
+<% end %>

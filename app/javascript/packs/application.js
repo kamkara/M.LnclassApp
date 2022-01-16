@@ -24,4 +24,4 @@ $(document).on("turbolinks:load", function() {
 })
 
 // add pricing
-import "./components/pricing.js";
+//import ".*/pricing.js";
