@@ -81,4 +81,10 @@ end
       ""
     end
   end
+
+  def moderator?(current_user)
+    if current_user.role === "Team" || current_user.id ===  @course.user_id
+      ":moderator?"
+    end
+  end
 end

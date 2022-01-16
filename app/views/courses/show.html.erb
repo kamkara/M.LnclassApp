@@ -7,20 +7,26 @@
       </h2>
     </div>
     <div class="card rounded-md md:w-2/3">
-      <div class="m-2 ">
+      <div class="mx-2 ">
         <%= @course.content %>
+        
+        <% if moderator?(current_user) === ":moderator?" %>
+        <!-- Add More Options--->
+          <%= render "courses/shared/moreOptions" %>
+        <% end %>
       </div>
     </div>
-    <div class="card rounded-md mt-2 md:w-2/3">
+
+    <!-- Add WHatsApp Share link--->
     
-      <div class="m-2"> <span class="font-bold"> 👉🏿 <%= current_user.last_name %> </span> Soit gentil, informez vos camarades! 
-       <br />  👉🏿<a href="https://wa.me/?text=🇨🇮 *💡 Bac 2021-2022 Jutilise maintenant la nouvelle pateforme Lnclass.com pour étudier mes léçons de Tle et faire des exercices<br/>👇 Découvre toi aussi* bit.ly/3IqsnkL" class="font-bold">   Lancez Information sur WhatsApp</a>
-      </div>
+    <div class="card rounded-md mt-2 md:w-2/3">
+      <%= render "courses/shared/whatsappShared" %>
     </div>
 
     <!-- Add exercices list for medium--->
     <div class="card mt-2 md:w-2/3">
       <div class="m-2">
-        <%= render partial: "courses/show_exercices",locals: {course: @course} %>
+      <p class="font-bold text-md "> Commencez les exercices</p>
+        <%= render partial: "courses/shared/exercices",locals: {course: @course} %>
     </div>
   </div>
