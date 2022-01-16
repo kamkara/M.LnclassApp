@@ -22,3 +22,6 @@ require("@rails/actiontext")
 $(document).on("turbolinks:load", function() {
   gtag('config', '216343412', {'page_location': event.data.url});
 })
+
+// add pricing
+import "./components/pricing.js";

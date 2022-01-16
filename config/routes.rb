@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   
   
   root to:'welcome#index'
+  get "pricing", to:'pricing#index'
   get "groups", to:'group#index'
   get 'documents', to:'document#index'
   get 'dashboard/index'
