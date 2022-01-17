@@ -11,7 +11,7 @@ def title
 end
 #site description
 def description
-  "Lnclass Education aide les élèves a apprendre facilement"
+  "Lnclass Education aide les élèves à obtenir le BAC"
 end
 
   #Sign in and up anywhere on app
