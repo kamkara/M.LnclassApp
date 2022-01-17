@@ -2,4 +2,9 @@
     <%= link_to  edit_course_path(@course), class:"mx-2 mt-2 no-underline font-semibold" do %>
         <i class="fas fa-pen-square"></i> Modifier
     <% end %>
+
+    <%= link_to course_path(@course), method: :delete, class:"mx-2 mt-2 no-underline font-semibold" do %>
+    <i class="fas fa-pen-square"></i> Supprimer
+    <% end %>
+    
 </div>

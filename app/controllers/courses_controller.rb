@@ -12,7 +12,6 @@ class CoursesController < ApplicationController
 
   # GET /courses/1 or /courses/1.json
   def show
-
   end
 
   # GET /courses/new
@@ -35,7 +34,7 @@ class CoursesController < ApplicationController
   def update
     respond_to do |format|
       if @course.update(course_params)
-        format.html { redirect_to @course, notice: "Course was successfully updated." }
+        format.html { redirect_to @course, notice: "Vous avez ameliorer le document." }
         format.json { render :show, status: :ok, location: @course }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -48,7 +47,7 @@ class CoursesController < ApplicationController
   def destroy
     @course.destroy
     respond_to do |format|
-      format.html { redirect_to courses_url, notice: "Course was successfully destroyed." }
+      format.html { redirect_to root_path, notice: "Vous avez supprimer le document." }
       format.json { head :no_content }
     end
   end
