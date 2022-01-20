@@ -3,7 +3,12 @@ class DashboardController < ApplicationController
 
   def index
     @UserDashboard = User.where("role = ?", "Student").order('created_at desc')
-  end
+    @TeacherUser = User.where("role = ?", "Teacher").order("created_at desc")
+    @MonthlyUser =  @UserDashboard.where("created_at >= ?", 1.month.from_now )
+    @WeeklyUser =  @MonthlyUser.where("created_at >= ?", 1.week.from_now )
+    @DailyUser =  @WeeklyUser.where("created_at >= ?", 1.day.from_now )
+    @CourseDashboard = Course.all
+  end 
 
   private
     def cityEreas
