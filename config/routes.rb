@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get "feeds", to:'home#index'
    get "espace_enseignant", to:'dashboard#index'
   get "teams", to:'home#team'
-  get "inscription-enseignant", to:'home#enseignant'
+  get "teacher", to:'home#enseignant'
   get "lesson", to:'courses#new'
   get "resultats", to:'results#new'
 
