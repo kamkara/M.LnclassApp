@@ -57,11 +57,12 @@ class CoursesController < ApplicationController
     def set_course
       @course = Course.friendly.find(params[:id])
     end
+    
     def find_levels
       @levels = Level.all
     end
 
-     def find_materials
+    def find_materials
       @materials = Material.all
     end
 
