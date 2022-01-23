@@ -31,18 +31,19 @@
         
       <!-- show exercices -->
         <div class="mt-2 w-3/4 flex flex-wrap content-start text-sm">
-          <div class="mx-4 p-2 lg:mr-8"> 
-            <% if currentUserRole?(current_user) === ":teacher?" %>
-              <%= link_to pricing_path, class:"hover:text-black text-black no-underline" do %>
-              <i class="fas fa-chalkboard-teacher"></i> S'Abonnez  
-              <% end %>
-          </div>
-          <div class="mx-4 p-2 lg:mr-8">    
-           👍<a href="https://wa.me/?text=🇨🇮 *💡 Bac 2021-2022 J'utilise maintenant la nouvelle pateforme Lnclass.com pour étudier mes léçons de Tle et faire des exercices<br/>👇 Découvre toi aussi* bit.ly/3IqsnkL" 
-           class="font-bold"> Informez sur WhatsApp</a>
+          <% if currentUserRole?(current_user) === ":teacher?" %>
+            <div class="mx-4 p-2 lg:mr-8"> 
+                <%= link_to pricing_path, class:"hover:text-black text-black no-underline" do %>
+                <i class="fas fa-chalkboard-teacher"></i> S'Abonnez  
+                <% end %>
+            </div>
+          <% else %>
+            <div class="mx-4 p-2 lg:mr-8">    
+            👍<a href="https://wa.me/?text=🇨🇮 *💡 Bac 2021-2022 J'utilise maintenant la nouvelle pateforme Lnclass.com pour étudier mes léçons de Tle et faire des exercices<br/>👇 Découvre toi aussi* bit.ly/3IqsnkL" 
+            class="font-bold"> Informez sur WhatsApp</a>
 
-          </div>
-            <% end %>
+            </div>
+          <% end %>
         </div>
       <!-- show  -->
         <div class="mt-2 w-1/4 flex ">
