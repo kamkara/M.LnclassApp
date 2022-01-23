@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_12_144116) do
+ActiveRecord::Schema.define(version: 2022_01_22_162933) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -59,8 +59,10 @@ ActiveRecord::Schema.define(version: 2022_01_12_144116) do
     t.uuid "answer_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.uuid "result_id", null: false
     t.index ["answer_id"], name: "index_answered_questions_on_answer_id"
     t.index ["question_id"], name: "index_answered_questions_on_question_id"
+    t.index ["result_id"], name: "index_answered_questions_on_result_id"
   end
 
   create_table "answers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -242,6 +244,7 @@ ActiveRecord::Schema.define(version: 2022_01_12_144116) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "answered_questions", "answers"
   add_foreign_key "answered_questions", "questions"
+  add_foreign_key "answered_questions", "results"
   add_foreign_key "answers", "questions"
   add_foreign_key "city_ereas", "users"
   add_foreign_key "classroom_admins", "classrooms"
