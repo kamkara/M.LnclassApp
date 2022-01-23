@@ -29,14 +29,14 @@
                     <p class=" border-b border-gray-500 py-3 px-5 text-sm font-semibold mr-3">Votre ville ... </p>
                     <div class="flex mb-4">
                         <div class="flex items-center m-2 ">
-                            <%= f.select :city_id, @city_ereas.map{|city_erea| [city_erea.title, city_erea.id]} %>
+                            <%= f.select :city_name, @city_ereas.map{|city_erea| [city_erea.title]} %>
                         </div>
                     </div>
                     <!-- add levels -->
                     <p class=" border-b border-gray-500 py-3 px-5 text-sm font-semibold mr-3">Votre discipline ... </p>
                     <div class="flex mb-4">
                         <div class="flex items-center m-2 ">
-                            <%= f.select :material_id, @materials.map{|material| [material.title, material.id]}, class:"w-8 border-2 rounded-md bg-white p-2" %>
+                            <%= f.select :material_name, @materials.map{|material| [material.title]}, class:"w-8 border-2 rounded-md bg-white p-2" %>
                         </div>
                     </div>
                     <!-- add role and city default -->

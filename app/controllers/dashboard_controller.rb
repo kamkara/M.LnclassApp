@@ -1,6 +1,6 @@
 class DashboardController < ApplicationController
   before_action :cityEreas
-
+  
   def index
     @UserDashboard = User.where("role = ?", "Student").order('created_at desc')
     @TeacherUser = User.where("role = ?", "Teacher").order("created_at desc")
@@ -9,6 +9,12 @@ class DashboardController < ApplicationController
     @DailyUser =  @WeeklyUser.where("created_at >= ?", 1.day.from_now )
     @CourseDashboard = Course.all
   end 
+  
+  def admin
+    @Courses = Course.all.order('created_at desc')
+    @Users = User.all.order('created_at desc')
+  end
+
 
   private
     def cityEreas

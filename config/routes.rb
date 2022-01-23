@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
   
+  
   root to:'welcome#index'
   get "pricing", to:'pricing#index'
   get "groups", to:'group#index'
   get 'documents', to:'document#index'
-  get 'dashboard/index'
   get "feeds", to:'home#index'
   get "espace_enseignant", to:'dashboard#index'
+  get "admin", to:'dashboard#admin'
   get "teams", to:'home#team'
   get "teacher", to:'home#enseignant'
   get "lesson", to:'courses#new'
