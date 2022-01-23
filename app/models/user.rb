@@ -48,7 +48,7 @@ class User < ApplicationRecord
 
   def user_team?
     if self.role != "Team"
-      validates :city_id, presence: true, on: :create
+      validates :city_name, presence: true, on: :create
     end
   end
 
