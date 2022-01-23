@@ -6,7 +6,7 @@
         <div class="w-full max-w-2xl mx-auto bg-white shadow-lg rounded-sm border border-gray-200">
             <header class="px-5 py-4 border-b border-gray-100">
 
-                <h2 class="font-semibold text-gray-800"><%= link_to 'New City', new_city_erea_path, class:"p-2 bg-lightblue-500 border rounded-md" %>  | <%= link_to 'Retour', root_path , class:"p-2 bg-lightblue-500 border rounded-md" %></h2>
+                <h2 class="font-semibold text-gray-800"><%= link_to 'Add City', new_city_erea_path, class:"p-2 bg-lightblue-500 border rounded-md" %>  | <%= link_to 'Retour', root_path , class:"p-2 bg-lightblue-500 border rounded-md" %></h2>
 
             </header>
             <div class="p-3">
@@ -41,7 +41,7 @@
                                     <div class="text-left"><%= link_to 'URL', city %></div>
                                 </td>
                                 <td class="p-2 whitespace-nowrap">
-                                    <div class="text-left font-medium text-green-500"><%= link_to 'Editer', edit_city_path(city) %></div>
+                                    <div class="text-left font-medium text-green-500"><%= link_to 'Editer', edit_city_erea_path(city) %></div>
                                 </td>
                                 <td class="p-2 whitespace-nowrap">
                                     <div class="text-lg text-center"><%= link_to 'Supprimer', city, method: :delete, data: { confirm: 'Are you sure?' } %></div>

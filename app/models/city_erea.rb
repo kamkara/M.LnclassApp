@@ -11,6 +11,6 @@ class CityErea < ApplicationRecord
 
   def slugged_custom
     #{school_name.nick_name} #
-    "from #{title}"
+    "civ #{title}"
   end
 end
