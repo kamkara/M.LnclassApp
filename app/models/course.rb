@@ -5,8 +5,8 @@ class Course < ApplicationRecord
   has_rich_text :content
 
   #RELATIONS
-  belongs_to :level
-  belongs_to :material
+  #belongs_to :level
+  #belongs_to :material
   belongs_to :user
   has_many :exercices,
             dependent: :destroy
@@ -17,6 +17,7 @@ class Course < ApplicationRecord
             :level_name,
             :material_name,
             :user_id,
+            :teacher_name,
             :slug, 
             presence: true
   

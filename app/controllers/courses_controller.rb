@@ -26,6 +26,7 @@ class CoursesController < ApplicationController
   # POST /courses or /courses.json
   def create
     @course = current_user.courses.build(course_params)
+    @course.teacher_name = current_user.full_name
     redirect_to root_path and return if @course.save
     render :new
   end
@@ -68,6 +69,6 @@ class CoursesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def course_params
-      params.require(:course).permit(:title, :content, :slug, :level_name, :material_name, :user_id, contentImg: [])
+      params.require(:course).permit(:title, :content, :slug, :level_name, :material_name, :user_id, :teacher_name, contentImg: [])
     end
 end

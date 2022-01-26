@@ -6,13 +6,13 @@
         <div class="mx-2">
           <strong>
             <span class="font-semibold">
-              <%= course.user.full_name %> 
+              <%= course.teacher_name %> 
               <% if currentUserRole?(current_user) === ":teacher?" %>-
                 <%= link_to 'Créer exercice', new_course_exercice_path(course), class:"text-blue-600" %> 
               <% end %>
             </span><br>
           </strong>
-          <small class="text-sm text-slate-500 truncate">Professeur de <%= course.material.title %> en <%= course.level.title %></small>
+          <small class="text-sm text-slate-500 truncate">Professeur de <%= course.material_name %> en <%= course.level_name %></small>
         </div>
       </div>
       <!-- Course title-->
