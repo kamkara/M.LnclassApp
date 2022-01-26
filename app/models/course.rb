@@ -1,4 +1,6 @@
 class Course < ApplicationRecord
+
+  self.ignored_columns = ["material_id"]
   #RICH_TEXTT EDITOR
   has_rich_text :content
 

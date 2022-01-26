@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_23_175407) do
+ActiveRecord::Schema.define(version: 2022_01_26_173350) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -124,14 +124,10 @@ ActiveRecord::Schema.define(version: 2022_01_23_175407) do
     t.text "contentImg"
     t.string "slug"
     t.uuid "user_id", null: false
-    t.uuid "level_id", null: false
-    t.uuid "material_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "level_name"
     t.string "material_name"
-    t.index ["level_id"], name: "index_courses_on_level_id"
-    t.index ["material_id"], name: "index_courses_on_material_id"
     t.index ["user_id"], name: "index_courses_on_user_id"
   end
 
@@ -259,8 +255,6 @@ ActiveRecord::Schema.define(version: 2022_01_23_175407) do
   add_foreign_key "classrooms", "materials"
   add_foreign_key "classrooms", "schools"
   add_foreign_key "classrooms", "users"
-  add_foreign_key "courses", "levels"
-  add_foreign_key "courses", "materials"
   add_foreign_key "courses", "users"
   add_foreign_key "exercices", "courses"
   add_foreign_key "exercices", "users"
