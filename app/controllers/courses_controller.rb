@@ -30,7 +30,7 @@ class CoursesController < ApplicationController
     redirect_to root_path and return if @course.save
     render :new
   end
-
+  
   # PATCH/PUT /courses/1 or /courses/1.json
   def update
     respond_to do |format|
