@@ -33,6 +33,7 @@ class CoursesController < ApplicationController
   
   # PATCH/PUT /courses/1 or /courses/1.json
   def update
+    @course.teacher_name = current_user.full_name
     respond_to do |format|
       if @course.update(course_params)
         format.html { redirect_to @course, notice: "Vous avez ameliorer le document." }
