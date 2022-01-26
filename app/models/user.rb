@@ -57,7 +57,14 @@ class User < ApplicationRecord
   end  
   
   def slug
-    self.slug = self.full_name
+    if self.role === "Student"
+      self.slug = "civ #{self.full_name} #{self.level_name}"
+    elsif self.role === "Teacher"
+      self.slug = "civ #{self.full_name} #{self.material_name}"
+    else
+      self.slug = "civ #{self.full_name}"
+      
+    end
   end
 
   ################## SLUG ###############
