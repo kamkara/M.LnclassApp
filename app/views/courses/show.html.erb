@@ -1,8 +1,7 @@
 <div class="m-2">
   <div class="w-full md:w-2/3">
-    <p class="">dfvgvgv</p>
-    <p class="">dfvgvgv</p>
-    <h2 class="font-semibold text-xl m-2 ">
+   
+    <h2 class="font-semibold text-xl m-2 mt-20">
       <%= @course.title %> <% if currentUserRole?(current_user) === ":teacher?" %> - <%= link_to 'Exercices', new_course_exercice_path(@course) %><% end %>
     </h2>
   </div>
@@ -26,6 +25,6 @@
     <div class="card mt-2 md:w-2/3">
       <div class="m-2">
       <p class="font-bold text-md "> Commencez les exercices</p>
-        <%= render partial: "courses/shared/exercices",locals: {course: @course} %>
+      <%= render partial: "courses/shared/exercices",locals: {course: @course} %>
     </div>
   </div>

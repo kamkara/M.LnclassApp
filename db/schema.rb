@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_26_173350) do
-
+ActiveRecord::Schema[7.0].define(version: 2022_02_27_161808) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
   enable_extension "plpgsql"
@@ -21,8 +20,8 @@ ActiveRecord::Schema.define(version: 2022_01_26_173350) do
     t.text "body"
     t.string "record_type", null: false
     t.uuid "record_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["record_type", "record_id", "name"], name: "index_action_text_rich_texts_uniqueness", unique: true
   end
 
@@ -31,7 +30,7 @@ ActiveRecord::Schema.define(version: 2022_01_26_173350) do
     t.string "record_type", null: false
     t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
-    t.datetime "created_at", null: false
+    t.datetime "created_at", precision: nil, null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
@@ -43,8 +42,8 @@ ActiveRecord::Schema.define(version: 2022_01_26_173350) do
     t.text "metadata"
     t.string "service_name", null: false
     t.bigint "byte_size", null: false
-    t.string "checksum", null: false
-    t.datetime "created_at", null: false
+    t.string "checksum"
+    t.datetime "created_at", precision: nil, null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
@@ -57,8 +56,8 @@ ActiveRecord::Schema.define(version: 2022_01_26_173350) do
   create_table "answered_questions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "question_id", null: false
     t.uuid "answer_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.uuid "result_id", null: false
     t.index ["answer_id"], name: "index_answered_questions_on_answer_id"
     t.index ["question_id"], name: "index_answered_questions_on_question_id"
@@ -69,8 +68,8 @@ ActiveRecord::Schema.define(version: 2022_01_26_173350) do
     t.text "content"
     t.boolean "correct_answer"
     t.uuid "question_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["question_id"], name: "index_answers_on_question_id"
   end
 
@@ -78,16 +77,16 @@ ActiveRecord::Schema.define(version: 2022_01_26_173350) do
     t.string "title"
     t.string "slug"
     t.uuid "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_city_ereas_on_user_id"
   end
 
   create_table "classroom_admins", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "user_id", null: false
     t.uuid "classroom_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["classroom_id"], name: "index_classroom_admins_on_classroom_id"
     t.index ["user_id"], name: "index_classroom_admins_on_user_id"
   end
@@ -99,8 +98,8 @@ ActiveRecord::Schema.define(version: 2022_01_26_173350) do
     t.uuid "level_id", null: false
     t.uuid "material_id", null: false
     t.uuid "school_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["level_id"], name: "index_classrooms_on_level_id"
     t.index ["material_id"], name: "index_classrooms_on_material_id"
     t.index ["school_id"], name: "index_classrooms_on_school_id"
@@ -124,10 +123,11 @@ ActiveRecord::Schema.define(version: 2022_01_26_173350) do
     t.text "contentImg"
     t.string "slug"
     t.uuid "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "level_name"
     t.string "material_name"
+    t.string "teacher_name"
     t.index ["user_id"], name: "index_courses_on_user_id"
   end
 
@@ -142,8 +142,8 @@ ActiveRecord::Schema.define(version: 2022_01_26_173350) do
     t.boolean "published"
     t.uuid "user_id", null: false
     t.uuid "course_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["course_id"], name: "index_exercices_on_course_id"
     t.index ["user_id"], name: "index_exercices_on_user_id"
   end
@@ -153,7 +153,7 @@ ActiveRecord::Schema.define(version: 2022_01_26_173350) do
     t.integer "sluggable_id", null: false
     t.string "sluggable_type", limit: 50
     t.string "scope"
-    t.datetime "created_at"
+    t.datetime "created_at", precision: nil
     t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
@@ -163,8 +163,8 @@ ActiveRecord::Schema.define(version: 2022_01_26_173350) do
     t.string "title"
     t.string "slug"
     t.uuid "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_levels_on_user_id"
   end
 
@@ -172,8 +172,8 @@ ActiveRecord::Schema.define(version: 2022_01_26_173350) do
     t.string "title"
     t.string "slug"
     t.uuid "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_materials_on_user_id"
   end
 
@@ -182,8 +182,8 @@ ActiveRecord::Schema.define(version: 2022_01_26_173350) do
     t.string "explain_answer"
     t.uuid "user_id", null: false
     t.uuid "exercice_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["exercice_id"], name: "index_questions_on_exercice_id"
     t.index ["user_id"], name: "index_questions_on_user_id"
   end
@@ -191,8 +191,8 @@ ActiveRecord::Schema.define(version: 2022_01_26_173350) do
   create_table "results", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "user_id", null: false
     t.uuid "exercice_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["exercice_id"], name: "index_results_on_exercice_id"
     t.index ["user_id"], name: "index_results_on_user_id"
   end
@@ -201,8 +201,8 @@ ActiveRecord::Schema.define(version: 2022_01_26_173350) do
     t.string "name"
     t.string "slug"
     t.uuid "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_schools_on_user_id"
   end
 
@@ -210,11 +210,11 @@ ActiveRecord::Schema.define(version: 2022_01_26_173350) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
+    t.datetime "reset_password_sent_at", precision: nil
+    t.datetime "remember_created_at", precision: nil
     t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
+    t.datetime "current_sign_in_at", precision: nil
+    t.datetime "last_sign_in_at", precision: nil
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
     t.string "first_name"
@@ -231,8 +231,8 @@ ActiveRecord::Schema.define(version: 2022_01_26_173350) do
     t.uuid "level_id"
     t.uuid "material_id"
     t.uuid "school_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.uuid "city_id"
     t.string "material_name"
     t.string "level_name"
